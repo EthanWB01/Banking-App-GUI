@@ -1,0 +1,63 @@
+from BankingInfo import BankAccount
+import tkinter as tk
+
+
+
+root = tk.Tk()
+root.geometry("1000x500")
+root.title("Banking App")
+
+my_account = BankAccount("None", 0)
+
+
+def set_account(account):
+    global my_account
+    my_account = account
+
+
+
+def intro_button_press():
+    global my_account
+    print("Button has been pressed!")
+    my_account = my_account.intro()
+
+intro_button = tk.Button(root, text="Start Here", command=intro_button_press)
+intro_button.pack(pady=10)
+
+
+
+
+def add_button_press():
+    print("Button has been pressed!")
+    my_account.add_money()
+add_button = tk.Button(root, text = "Add Funds", command=add_button_press)
+add_button.pack(pady=10)
+
+
+
+def withdraw_button_press():
+    print("Button has been pressed!")
+    my_account.withdraw()
+withdraw_button = tk.Button(root, text = "Withdraw Funds", command=withdraw_button_press)
+withdraw_button.pack(pady=10)
+
+
+
+def transfer_button_press():
+    print("Button has been pressed!")
+    my_account.exchange()
+transfer_button = tk.Button(root, text = "Transfer Funds", command=transfer_button_press)
+transfer_button.pack(pady=10)
+
+
+def exit_button_press():
+    print("Button has been pressed!")
+    my_account.goodbye()
+    root.quit()
+exit_button = tk.Button(root, text = "Exit", command=exit_button_press)
+exit_button.pack(pady=10)
+
+
+root.mainloop()
+
+
