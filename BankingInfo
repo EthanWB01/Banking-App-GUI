@@ -1,0 +1,84 @@
+from tkinter import simpledialog
+import tkinter as tk
+from tkinter import messagebox
+
+
+
+class BankAccount:
+    def __init__(self, account_holder, balance):
+        self.account_holder = account_holder
+        self.balance = float(balance)
+
+
+
+    def intro(self):
+        while True:
+            messagebox.showinfo("info","In the next form input your name and balance")
+            name = simpledialog.askstring("name","What is your name")
+            balance = simpledialog.askstring("balance","What is your balance")
+            ready = simpledialog.askstring("done","Are you done").lower()
+            if ready == "yes":
+                return BankAccount(name, balance)
+
+            else:
+                messagebox.showinfo("Info","What do you want to change")
+
+    def add_money(self):
+            add_money_amount = simpledialog.askstring("Add Money", "How much do you want to add")
+            add_money_amount = float(add_money_amount)
+            self.balance += add_money_amount
+            messagebox.showinfo("info",self.balance)
+
+    def withdraw(self):
+            withdraw_amount = simpledialog.askstring("Withdraw Money", "How much do you want to withdraw")
+            withdraw_amount = float(withdraw_amount)
+            if self.balance > withdraw_amount:
+                self.balance -= withdraw_amount
+                messagebox.showinfo("info",self.balance)
+            else:
+                messagebox.showinfo("info","sorry there is not enough funds")
+
+    def exchange(self):
+            transfer_person = simpledialog.askstring("John Transfer", "Who do you want to transfer to").lower()
+            if transfer_person == "john":
+                transfer_amount = simpledialog.askstring("Amount", "How much do you want to give")
+                transfer_amount = float(transfer_amount)
+                if transfer_amount <= self.balance:
+                    self.balance -= transfer_amount
+                    john.balance += transfer_amount
+                    messagebox.showinfo("info",f"Your balance:{self.balance}")
+                    messagebox.showinfo("info",f"His balance:{john.balance}")
+                else:
+                    messagebox.showinfo("info","Not enough money")
+            elif transfer_person == "sarah":
+                transfer_amount = simpledialog.askstring("Sarah Transfer","How much do you want to give").lower
+                transfer_amount = float(transfer_amount)
+                if transfer_amount <= self.balance:
+                    self.balance -= transfer_amount
+                    sarah.balance += transfer_amount
+                    messagebox.showinfo("info",f"Your balance:{self.balance}")
+                    messagebox.showinfo("info",f"Her balance:{sarah.balance}")
+                else:
+                    messagebox.showinfo("info","Not enough money")
+            else:
+                messagebox.showinfo("info","Unknown Name")
+
+
+
+    def goodbye(self):
+        credits = simpledialog.askstring("Exit Dialog","Did you enjoy our app").lower()
+        if credits == "yes":
+            url = "file:///C:/Users/noonb/OneDrive/Desktop/start.html"
+            message = f"Please visit the following link: {url}"
+            root = tk.Tk()
+            label = tk.Label(root, text=message, padx=20, pady=20)
+            label.pack()
+        else:
+            messagebox.showinfo("info","Bye")
+
+
+
+    def __str__(self):
+        return f"{self.account_holder}, {self.balance}"
+sarah = BankAccount("Sarah", 1000)
+john = BankAccount("John", 2000)
